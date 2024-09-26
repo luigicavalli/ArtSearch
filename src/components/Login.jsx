@@ -1,13 +1,21 @@
 import { Button } from './Button';
+import { Checkbox } from './Checkbox';
 import { HandleLogin } from './HandleLogin';
 import { Textbox } from './Textbox';
 
 export function Login() {
-  const { handleSubmit, handleChange, formData } = HandleLogin();
+  const {
+    handleSubmit,
+    handleChange,
+    toggleShowPassword,
+    showPassword,
+    formData,
+  } = HandleLogin();
 
   return (
     <div className="flex flex-col justify-center items-center w-full min-h-screen bg-slate-300">
-      <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
+      <h3 className="relative top-[-60px] font-bold text-3xl">Accedi</h3>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <Textbox
           type="text"
           name="username"
@@ -16,13 +24,17 @@ export function Login() {
           onChange={handleChange}
         />
         <Textbox
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           name="password"
           value={formData.password}
           placeholder="Password"
           onChange={handleChange}
         />
-        <Button type="submit">Login</Button>
+        <div className="flex justify-center gap-2">
+          <Checkbox checked={showPassword} onChange={toggleShowPassword} />
+          <span>Mostra password</span>
+        </div>
+        <Button type="submit" text="Login" />
       </form>
     </div>
   );

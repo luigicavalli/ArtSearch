@@ -6,12 +6,17 @@ export function HandleLogin() {
     password: '',
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+
   //   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    alert('Login effettuato');
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleChange = (event) => {
@@ -23,5 +28,11 @@ export function HandleLogin() {
     }));
   };
 
-  return { handleSubmit, handleChange, formData };
+  return {
+    handleSubmit,
+    handleChange,
+    toggleShowPassword,
+    showPassword,
+    formData,
+  };
 }
