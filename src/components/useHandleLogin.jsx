@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-export function HandleLogin() {
+export function useHandleLogin() {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 

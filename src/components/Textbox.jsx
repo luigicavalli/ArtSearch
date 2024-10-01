@@ -14,7 +14,7 @@ export function Textbox({ type, name, value, placeholder, onChange }) {
 }
 
 Textbox.propTypes = {
-  type: PropTypes.oneOf(['text', 'password']).isRequired,
+  type: PropTypes.oneOf(['text', 'password', 'email']).isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   placeholder: PropTypes.string,
