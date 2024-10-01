@@ -8,8 +8,6 @@ export function useHandleLogin() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  //   const [errorMessage, setErrorMessage] = useState('');
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
