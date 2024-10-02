@@ -30,9 +30,9 @@ export function useHandleLogin() {
         if (user) {
           alert('Login avvenuto con successo!');
 
-          const resultToString = JSON.stringify(user);
+          const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
 
-          localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage
+          localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente nel local storage;
 
           navigate("/dashboard")
         } else {
