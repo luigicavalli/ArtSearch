@@ -1,4 +1,4 @@
-import { Button } from './Button';
+import { Button } from "../global/Button";
 
 export function Home() {
   return (
