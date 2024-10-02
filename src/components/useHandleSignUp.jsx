@@ -24,7 +24,9 @@ export function useHandleSignUp() {
       });
 
       const result = await response.json();
+
       alert('Registrazione completata con successo!');
+
       console.log('Success:', result);
     } catch (error) {
       console.error('Error:', error);

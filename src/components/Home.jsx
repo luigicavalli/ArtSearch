@@ -20,6 +20,12 @@ export function Home() {
               text={'Login'}
               to={'/login'}
             ></Button>
+            <Button
+              type="button"
+              width={'150px'}
+              text={'Registrati'}
+              to={'/register'}
+            ></Button>
           </div>
         </div>
       </div>

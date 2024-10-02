@@ -2,6 +2,7 @@ import { Textbox } from './Textbox';
 import { Checkbox } from './Checkbox';
 import { useHandleSignUp } from './useHandleSignUp';
 import { Button } from './Button';
+import { Link } from 'react-router-dom';
 
 export function Register() {
   const {
@@ -49,6 +50,15 @@ export function Register() {
           <span>Mostra password</span>
         </div>
         <Button type="submit" text="Invia" />
+        <div className="flex gap-1 justify-center items-center">
+          <span>Gi&agrave; registrato?</span>
+          <Link
+            className="underline hover:text-sky-900 active:text-gray-900"
+            to={'/login'}
+          >
+            Login
+          </Link>
+        </div>
       </form>
     </div>
   );
