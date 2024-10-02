@@ -28,6 +28,9 @@ export function useHandleSignUp() {
 
         alert('Registrazione completata con successo!');
 
+        const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
+        localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage;
+
         console.log('Success:', result);
       } else {
         throw new Error('Registrazione fallita');
