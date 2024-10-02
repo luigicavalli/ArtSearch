@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 export function useHandleLogin() {
   const [formData, setFormData] = useState({
@@ -28,7 +29,11 @@ export function useHandleLogin() {
         );
 
         if (user) {
-          alert('Login avvenuto con successo!');
+          Swal.fire({
+            title: "Perfetto!",
+            text: "Login effettuato!",
+            icon: "success"
+          });
 
           const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
 
@@ -36,6 +41,11 @@ export function useHandleLogin() {
 
           navigate("/dashboard")
         } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ops...",
+            text: "Credenziali errate!"
+          });
           throw new Error('Credenziali errate');
         }
 

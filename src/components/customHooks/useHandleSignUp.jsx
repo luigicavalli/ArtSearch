@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 export function useHandleSignUp() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,8 @@ export function useHandleSignUp() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,13 +30,19 @@ export function useHandleSignUp() {
       if (response.ok) {
         const result = await response.json();
 
-        alert('Registrazione completata con successo!');
+        Swal.fire({
+          title: "Perfetto!",
+          text: "Registrazione completata!",
+          icon: "success"
+        });
 
         const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
         
         localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage;
 
         console.log('Success:', result);
+
+        navigate("/login")
       } else {
         throw new Error('Registrazione fallita');
       }
