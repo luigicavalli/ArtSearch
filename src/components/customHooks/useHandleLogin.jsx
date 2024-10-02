@@ -8,9 +8,39 @@ export function useHandleLogin() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+
+    const url =
+      'https://66fc66fec3a184a84d16f9c5.mockapi.io/api/mock-registration/users';
+
+    try {
+      const response = await fetch(url);
+
+      if (response.ok) {
+        const users = await response.json();
+
+        const user = users.find(
+          (user) => user.email === formData.email && user.password === formData.password
+        );
+
+        if (user) {
+          alert('Login avvenuto con successo!');
+
+          const resultToString = JSON.stringify(user);
+
+          localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage
+        } else {
+          throw new Error('Credenziali errate');
+        }
+
+        console.log('Success:', user);
+      } else {
+        throw new Error('Login fallito');
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   const toggleShowPassword = () => {
