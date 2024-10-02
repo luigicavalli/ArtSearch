@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export function useHandleLogin() {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ export function useHandleLogin() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,6 +33,8 @@ export function useHandleLogin() {
           const resultToString = JSON.stringify(user);
 
           localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage
+
+          navigate("/dashboard")
         } else {
           throw new Error('Credenziali errate');
         }
