@@ -23,13 +23,17 @@ export function useHandleSignUp() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      if (response.ok) {
+        const result = await response.json();
 
-      alert('Registrazione completata con successo!');
+        alert('Registrazione completata con successo!');
 
-      console.log('Success:', result);
+        console.log('Success:', result);
+      } else {
+        throw new Error('Registrazione fallita');
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
     }
   };
 
