@@ -6,6 +6,8 @@ export function Dashboard() {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    localStorage.removeItem('userData');
+    
     navigate('/');
   };
 
