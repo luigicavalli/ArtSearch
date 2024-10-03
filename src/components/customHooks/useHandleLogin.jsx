@@ -25,26 +25,29 @@ export function useHandleLogin() {
         const users = await response.json();
 
         const user = users.find(
-          (user) => user.email === formData.email && user.password === formData.password
+          (user) =>
+            user.email === formData.email && user.password === formData.password
         );
 
         if (user) {
           Swal.fire({
-            title: "Perfetto!",
-            text: "Login effettuato!",
-            icon: "success"
+            title: 'Perfetto!',
+            text: 'Login effettuato!',
+            icon: 'success',
           });
+
+          // TODO eliminare la password dal local storage;
 
           const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
 
           localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente nel local storage;
 
-          navigate("/dashboard")
+          navigate('/dashboard');
         } else {
           Swal.fire({
-            icon: "error",
-            title: "Ops...",
-            text: "Credenziali errate!"
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Credenziali errate!',
           });
           throw new Error('Credenziali errate');
         }
