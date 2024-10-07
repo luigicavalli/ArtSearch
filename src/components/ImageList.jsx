@@ -4,7 +4,7 @@ import { ImageItem } from './ImageItem';
 export function ImageList({ data }) {
   return (
     <div className="mb-[100px]">
-      <ul className="grid grid-cols-4 gap-5">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
         {data.map((image) => (
           <ImageItem key={image.objectID} image={image} />
         ))}

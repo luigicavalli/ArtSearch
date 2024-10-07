@@ -2,9 +2,15 @@ import { Button } from '../global/Button';
 import { Textbox } from '../global/Textbox';
 import { useImages } from '../customHooks/useImages';
 import { ImageList } from '../ImageList';
+import { useHandleLogin } from '../customHooks/useHandleLogin';
+import { useHandleLogout } from '../customHooks/useHandleLogout';
 
 export function Home() {
   const { images, handleChange, data, searchTerm } = useImages();
+
+  const { isLoggedIn } = useHandleLogin();
+
+  const { handleLogout } = useHandleLogout();
 
   const currentYear = new Date().getFullYear();
 
@@ -28,20 +34,39 @@ export function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button
-                type="button"
-                width={'150px'}
-                text={'Login'}
-                to={'/login'}
-              ></Button>
-              <Button
-                type="button"
-                width={'150px'}
-                text={'Registrati'}
-                to={'/register'}
-              ></Button>
-            </div>
+            <div></div>
+            {!isLoggedIn ? (
+              <div className="flex items-center gap-4">
+                <Button
+                  type="button"
+                  width={'150px'}
+                  text={'Login'}
+                  to={'/login'}
+                ></Button>
+                <Button
+                  type="button"
+                  width={'150px'}
+                  text={'Registrati'}
+                  to={'/register'}
+                ></Button>
+              </div>
+            ) : (
+              <div className="flex gap-4">
+                <Button
+                  type="button"
+                  width={'150px'}
+                  text={'Dashboard'}
+                  to={'/dashboard'}
+                />
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="border-2 border-red-700 rounded-lg w-[150px] p-3 font-bold text-slate-100 bg-red-700 hover:bg-slate-100 hover:text-red-700 transition-all active:bg-red-700 active:text-slate-100"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

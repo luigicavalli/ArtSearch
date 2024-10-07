@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
@@ -9,6 +9,8 @@ export function useHandleLogin() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,6 +39,8 @@ export function useHandleLogin() {
           });
 
           // TODO eliminare la password dal local storage;
+
+          delete user.password;
 
           const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
 
@@ -74,10 +78,19 @@ export function useHandleLogin() {
     }));
   };
 
+  useEffect(() => {
+    const user = localStorage.getItem('userData');
+
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return {
     handleSubmit,
     handleChange,
     toggleShowPassword,
+    isLoggedIn,
     showPassword,
     formData,
   };
