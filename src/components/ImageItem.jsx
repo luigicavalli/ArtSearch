@@ -8,7 +8,7 @@ export function ImageItem({ image }) {
           <img
             alt={image.title}
             src={image.primaryImage}
-            className="h-64 max-w-[300px] object-cover sm:h-80 lg:h-96 border-b-[3px] border-sky-900"
+            className="h-64  object-cover sm:h-80 lg:h-96 border-b-[3px] border-sky-900"
           />
           <h3 className="mt-4 mx-4 text-lg font-bold text-gray-900 sm:text-xl">
             {image.title}
