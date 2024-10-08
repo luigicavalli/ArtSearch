@@ -33,7 +33,9 @@ export function useHandleSignUp() {
         Swal.fire({
           title: "Perfetto!",
           text: "Registrazione completata!",
-          icon: "success"
+          icon: "success",
+          confirmButtonColor: '#0c4a6e',
+          background: '#f1f5f9',
         });
 
         const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
@@ -44,6 +46,13 @@ export function useHandleSignUp() {
 
         navigate("/login")
       } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ops...',
+          text: 'Errore durante la registrazione',
+          confirmButtonColor: '#0c4a6e',
+          background: '#f1f5f9',
+        });
         throw new Error('Registrazione fallita');
       }
     } catch (error) {

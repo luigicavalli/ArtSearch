@@ -36,11 +36,11 @@ export function useHandleLogin() {
             title: 'Perfetto!',
             text: 'Login effettuato!',
             icon: 'success',
+            confirmButtonColor: '#0c4a6e',
+            background: '#f1f5f9',
           });
 
-          // TODO eliminare la password dal local storage;
-
-          delete user.password;
+          delete user.password; // Elimina la password dal local storage;
 
           const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
 
@@ -52,6 +52,8 @@ export function useHandleLogin() {
             icon: 'error',
             title: 'Ops...',
             text: 'Credenziali errate!',
+            confirmButtonColor: '#0c4a6e',
+            background: '#f1f5f9',
           });
           throw new Error('Credenziali errate');
         }
