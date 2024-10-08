@@ -166,7 +166,7 @@ export function Dashboard() {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center gap-2">
-            <Button type="button" width={'200px'} text={'Modifica i dati'} />
+            <Button type="button" width={'200px'} text={'Modifica i dati'} to={'/update-user'} />
             <button
               type="button"
               className="border-2 border-red-700 rounded-lg w-[200px] p-3 font-bold text-slate-100 bg-red-700 hover:bg-slate-100 hover:text-red-700 transition-all active:bg-red-700 active:text-slate-100"

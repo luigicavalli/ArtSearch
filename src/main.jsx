@@ -10,6 +10,7 @@ import { Home } from './components/pages/Home';
 import { Login } from './components/pages/Login';
 import { Register } from './components/pages/Register';
 import { Dashboard } from './components/pages/Dashboard';
+import { EditData } from './components/pages/EditData';
 
 function checkIfUserLogged() {
   if (localStorage.getItem('userData')) {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     loader: checkIfUserNotLogged,
   },
+  {
+    path: '/update-user',
+    element: <EditData />,
+    loader: checkIfUserNotLogged,
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
