@@ -11,10 +11,11 @@ import { Login } from './components/pages/Login';
 import { Register } from './components/pages/Register';
 import { Dashboard } from './components/pages/Dashboard';
 import { EditData } from './components/pages/EditData';
+import App from './App';
 
 function checkIfUserLogged() {
   if (localStorage.getItem('userData')) {
-    return redirect('/dashboard');
+    return redirect('/home');
   } else {
     return null;
   }
@@ -31,7 +32,12 @@ function checkIfUserNotLogged() {
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <App />,
+  },
+  {
+    path: '/home',
     element: <Home />,
+    loader: checkIfUserNotLogged,
   },
   {
     path: '/login',

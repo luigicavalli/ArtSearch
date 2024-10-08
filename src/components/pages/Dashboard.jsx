@@ -30,7 +30,7 @@ export function Dashboard() {
               </div>
             </div>
             <div className="flex gap-4">
-              <Button type="button" width={'150px'} text={'Home'} to={'/'} />
+              <Button type="button" width={'150px'} text={'Home'} to={'/home'} />
               <button
                 type="button"
                 onClick={handleLogout}

@@ -13,6 +13,13 @@
   background-position: center;
 }
 
+.main-bg {
+  background: fixed;
+  background-image: url('/src/assets/salon-2015.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 input:-webkit-autofill {
   background-color: transparent !important;
   color: inherit !important;
