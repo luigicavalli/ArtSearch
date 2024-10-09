@@ -17,14 +17,24 @@ export function useHandleLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url =
-      'https://66fc66fec3a184a84d16f9c5.mockapi.io/api/mock-registration/users';
+    const url = 'http://localhost:3000/login';
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        })
+      });
 
       if (response.ok) {
         const users = await response.json();
+
+        console.log(users);
 
         const user = users.find(
           (user) =>

@@ -17,14 +17,18 @@ export function useHandleSignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url =
-      'https://66fc66fec3a184a84d16f9c5.mockapi.io/api/mock-registration/users';
+    const url = 'http://localhost:3000/sign-up';
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          surname: formData.surname,
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
       if (response.ok) {
@@ -37,6 +41,8 @@ export function useHandleSignUp() {
           confirmButtonColor: '#0c4a6e',
           background: '#f1f5f9',
         });
+
+        delete result.password; // Elimina la password dal local storage;
 
         const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
         
