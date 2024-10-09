@@ -42,7 +42,7 @@ export function useHandleSignUp() {
           background: '#f1f5f9',
         });
 
-        delete result.password; // Elimina la password dal local storage;
+        // delete result.password; // Elimina la password dal local storage;
 
         const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
         
