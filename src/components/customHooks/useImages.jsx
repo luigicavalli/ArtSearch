@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 export function useImages() {
   const [data, setData] = useState([]);
@@ -7,6 +8,21 @@ export function useImages() {
   const url = `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${searchTerm}&hasImages=true`;
 
   const images = async () => {
+    Swal.fire({
+      title: 'Caricamento in corso...',
+      html: 'Attendere mentre vengono caricati i dati.',
+      allowOutsideClick: false,
+      loader: '#0c4a6e',
+      background: '#f1f5f9',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    const closeLoadingAlert = () => {
+      Swal.close();
+    };
+
     try {
       const response = await fetch(url);
 
@@ -26,6 +42,8 @@ export function useImages() {
       const filteredData = objectDetails.filter((image) =>
         image.artistDisplayName.toLowerCase().includes(searchTerm.toLowerCase())
       );
+
+      closeLoadingAlert();
 
       setData(filteredData);
     } catch (error) {
