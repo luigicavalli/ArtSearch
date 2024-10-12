@@ -1,3 +1,4 @@
+import { useHandleDelete } from '../customHooks/useHandleDelete';
 import { useHandleLogout } from '../customHooks/useHandleLogout';
 import { Button } from '../global/Button';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,8 @@ export function Dashboard() {
   const user = userData ? JSON.parse(userData) : null;
 
   const { handleLogout } = useHandleLogout();
+
+  const { handleDelete } = useHandleDelete();
 
   const currentYear = new Date().getFullYear();
 
@@ -190,6 +193,7 @@ export function Dashboard() {
             <button
               type="button"
               className="border-2 border-red-700 rounded-lg w-[200px] p-3 font-bold text-slate-100 bg-red-700 hover:bg-slate-100 hover:text-red-700 transition-all active:bg-red-700 active:text-slate-100"
+              onClick={handleDelete}
             >
               Elimina account
             </button>

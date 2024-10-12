@@ -16,13 +16,13 @@ export function useHandleEditData() {
 
   useEffect(() => {
     const user = localStorage.getItem('userData');
-
+      
     const userParsed = JSON.parse(user);
 
     setFormData(userParsed);
   }, []);
 
-  const url = `https://66fc66fec3a184a84d16f9c5.mockapi.io/api/mock-registration/users/${formData.id}`;
+  const url = `http://localhost:3000/edit/${formData.id}`;
 
   const handleEditData = async (event, updatedData) => {
     event.preventDefault();

@@ -28,49 +28,44 @@ export function useHandleLogin() {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-        })
+        }),
       });
 
       if (response.ok) {
-        const users = await response.json();
+        const data = await response.json();
 
-        console.log(users);
-
-        const user = users.find(
-          (user) =>
-            user.email === formData.email && user.password === formData.password
+        localStorage.setItem(
+          'userData',
+          JSON.stringify({
+            id: data.user.id,
+            email: data.user.email,
+            name: data.user.name,
+            surname: data.user.surname,
+            apiToken: data.apiToken,
+          })
         );
 
-        if (user) {
-          Swal.fire({
-            title: 'Perfetto!',
-            text: 'Login effettuato!',
-            icon: 'success',
-            confirmButtonColor: '#0c4a6e',
-            background: '#f1f5f9',
-          });
+        Swal.fire({
+          title: 'Perfetto!',
+          text: 'Login effettuato!',
+          icon: 'success',
+          confirmButtonColor: '#0c4a6e',
+          background: '#f1f5f9',
+        });
 
-          delete user.password; // Elimina la password dal local storage;
+        navigate('/dashboard');
 
-          const resultToString = JSON.stringify(user); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
-
-          localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente nel local storage;
-
-          navigate('/dashboard');
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Ops...',
-            text: 'Credenziali errate!',
-            confirmButtonColor: '#0c4a6e',
-            background: '#f1f5f9',
-          });
-          throw new Error('Credenziali errate');
-        }
-
-        console.log('Success:', user);
+        console.log('Success:', data);
       } else {
-        throw new Error('Login fallito');
+        Swal.fire({
+          icon: 'error',
+          title: 'Ops...',
+          text: 'Credenziali errate!',
+          confirmButtonColor: '#0c4a6e',
+          background: '#f1f5f9',
+        });
+
+        throw new Error('Credenziali errate');
       }
     } catch (error) {
       console.error('Error:', error.message);
