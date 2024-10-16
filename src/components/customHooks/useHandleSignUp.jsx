@@ -34,6 +34,8 @@ export function useHandleSignUp() {
       if (response.ok) {
         const result = await response.json();
 
+        console.log(result)
+
         Swal.fire({
           title: "Perfetto!",
           text: "Registrazione completata!",
@@ -42,13 +44,13 @@ export function useHandleSignUp() {
           background: '#f1f5f9',
         });
 
-        // delete result.password; // Elimina la password dal local storage;
+        delete result.user.password;
 
-        const resultToString = JSON.stringify(result); // Trasformo i dati ricevuti dal backend in stringa usando JSON.stringify();
+        const user = JSON.stringify(result.user);
         
-        localStorage.setItem('userData', resultToString); // Salvo i dati dell'utente in local storage;
+        localStorage.setItem('userData', user); // Salvo i dati dell'utente in local storage;
 
-        console.log('Success:', result);
+        console.log('Success:', user);
 
         navigate("/login")
       } else {

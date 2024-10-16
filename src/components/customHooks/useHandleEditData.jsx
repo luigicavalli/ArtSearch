@@ -40,7 +40,7 @@ export function useHandleEditData() {
       });
 
       if (response.ok) {
-        const updatedUser = await response.json();
+        const result = await response.json();
 
         Swal.fire({
           title: 'Perfetto!',
@@ -50,15 +50,15 @@ export function useHandleEditData() {
           background: '#f1f5f9',
         });
 
-        delete updatedUser.password;
+        delete result.user.password;
 
-        const resultToString = JSON.stringify(updatedUser);
+        const user = JSON.stringify(result.user);
 
-        localStorage.setItem('userData', resultToString);
+        localStorage.setItem('userData', user);
 
         navigate('/dashboard');
 
-        console.log('Dati aggiornati', resultToString);
+        console.log('Dati aggiornati', user);
       }
     } catch (error) {
       console.error(error);

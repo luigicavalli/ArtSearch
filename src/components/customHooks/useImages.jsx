@@ -12,7 +12,6 @@ export function useImages() {
       title: 'Caricamento in corso...',
       html: 'Attendere mentre vengono caricati i dati.',
       allowOutsideClick: false,
-      loader: '#0c4a6e',
       background: '#f1f5f9',
       didOpen: () => {
         Swal.showLoading();
