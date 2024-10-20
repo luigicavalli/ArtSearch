@@ -42,6 +42,8 @@ export function useHandleLogin() {
             name: data.user.name,
             surname: data.user.surname,
             apiToken: data.apiToken,
+            role_id: data.user.role_id,
+            role: data.user.role,
           })
         );
 

@@ -1,7 +1,9 @@
+import { useHandleAdmin } from '../customHooks/useHandleAdmin';
 import { useHandleDelete } from '../customHooks/useHandleDelete';
 import { useHandleLogout } from '../customHooks/useHandleLogout';
 import { Button } from '../global/Button';
 import { Link } from 'react-router-dom';
+import { UsersList } from '../UsersList';
 
 export function Dashboard() {
   const userData = localStorage.getItem('userData'); // Recupero i dati precedentemente salvati in local storage;
@@ -11,6 +13,8 @@ export function Dashboard() {
   const { handleLogout } = useHandleLogout();
 
   const { handleDelete } = useHandleDelete();
+
+  const { handleUsers, users } = useHandleAdmin();
 
   const currentYear = new Date().getFullYear();
 
@@ -54,7 +58,7 @@ export function Dashboard() {
       </div>
       <div className="flex flex-col gap-4 pt-[175px] mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h1 className="border-4 border-sky-900 rounded-lg text-center bg-slate-100 p-4 text-2xl font-bold">
-          Bentornato, {user.name}!
+          Ti diamo il benvenuto nella tua dashboard, {user.name}!
         </h1>
         <div className="flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between p-4 sm:p-6 lg:p-8 border-4 rounded-lg border-sky-900 bg-slate-100">
           <div className="flex flex-col gap-4">
@@ -199,9 +203,30 @@ export function Dashboard() {
             </button>
           </div>
         </div>
+        {user.role === 'admin' ? (
+          <div className="flex flex-col gap-4 pb-[100px]">
+            <div className="flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between p-4 sm:p-6 lg:p-8 border-4 rounded-lg border-sky-900 bg-slate-100">
+              <div className="flex flex-col gap-4 w-full">
+                <h3 className="text-lg underline font-bold">Dashboard admin</h3>
+                <div className="flex justify-between gap-4 items-center">
+                  <Button
+                    type="button"
+                    width={'200px'}
+                    text={'Mostra utenti'}
+                    onClick={handleUsers}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex !flex-col !gap-4 sm:gap-0 sm:flex-row p-4 sm:p-6 lg:p-8 border-4 rounded-lg border-sky-900 bg-slate-100">
+              <h3 className="text-lg underline font-bold">Lista utenti</h3>
+              <UsersList users={users} />
+            </div>
+          </div>
+        ) : null}
       </div>
       <div className="fixed bottom-0 w-full border-t-4 border-sky-900 bg-slate-100">
-        <div className="mx-auto text-center max-w-screen-xl px-4 py-5 sm:px-6  lg:px-8">
+        <div className="mx-auto text-center max-w-screen-xl px-4 py-5 sm:px-6 lg:px-8">
           <span className="font-bold text-lg ">
             ©{currentYear} ArtSearch - Tutti i diritti riservati
           </span>
